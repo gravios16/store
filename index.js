@@ -33,21 +33,48 @@ function createStore(reducer) {
 // App Code
 
 function todos (state = [], action) {
-  if (action.type === 'ADD_TODO') {
-    return state.concat([action.todo])
+  switch (action.type) {
+    case 'ADD_TODO':
+      return state.concat([action.todo])
+
+    case 'REMOVE_TODO':
+      return state.filter( (todo) => todo.id !== action.id)
+    
+    case 'TOGGLE_TODO':
+      return state.map( (todo) => todo.id !== action.id ? todo :
+        Object.assign({}, todo, { completed: !(todo.completed) })    
+      )
+    default:
+      return state
   }
-
-  return state
 }
-
 
 
 const store = createStore(todos)
 
 store.subscribe(() => {
-  console.log("The new state is: ", store.getState)
+  console.log("The new state is: ", store.getState())
 })
 
 const unsubscribe = store.subscribe(() => {
   console.log("The store changed.")
+})
+
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 0,
+    name: 'elemento 1',
+    completed: false
+  }
+})
+
+store.dispatch({
+  type: 'TOGGLE_TODO',
+  id: 0
+})
+
+store.dispatch({
+  type: 'REMOVE_TODO',
+  id: 0
 })
