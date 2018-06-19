@@ -103,7 +103,7 @@ function loading (state = true, action) {
       return false
 
     default:
-      return true
+      return state
   }
 }
 
