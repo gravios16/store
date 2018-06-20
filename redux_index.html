@@ -9,6 +9,8 @@
 
   <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
 
+  <script src="https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js"></script>
+
   <script src="index.js"></script>
 </head>
 <body>
@@ -81,13 +83,8 @@
 
       removeItem = (todo) => {
 
-        this.props.store.dispatch(removeTodoAction(todo.id))
+        this.props.store.dispatch(handleDeleteTodo(todo))
 
-        return API.deleteTodo(todo.id)
-          .catch(() => {
-            this.props.store.dispatch(addTodoAction(todo))
-            alert('An error occurred. Try again.')
-          })
       }
 
       toggleItem = (id) => {
