@@ -3,6 +3,8 @@ import {
 	REMOVE_GOAL
 } from "../actions/goals"
 
+import { RECEIVE_DATA } from '../actions/shared.js'
+
 export default function goals (state = [], action) {
   switch (action.type) {
     case ADD_GOAL:

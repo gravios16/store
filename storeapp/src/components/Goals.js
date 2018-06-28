@@ -1,4 +1,14 @@
+import React from "react"
+import { connect } from "react-redux"
+import List from "./List"
+
+import {
+  handleAddGoal,
+  handleDeleteGoal
+} from "../actions/goals"
+
 class Goals extends React.Component {
+
   addItem = (e) => {
     e.preventDefault()
     this.props.dispatch(handleAddGoal(
@@ -32,6 +42,6 @@ class Goals extends React.Component {
   }
 }
 
-const ConnectedGoals = ReactRedux.connect((state) => ({
+export default  connect((state) => ({
   goals: state.goals
 }))(Goals)

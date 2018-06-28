@@ -4,6 +4,8 @@ import {
 	TOGGLE_TODO
 } from "../actions/todos"
 
+import { RECEIVE_DATA } from '../actions/shared.js'
+
 export default function todos (state = [], action) {
   switch (action.type) {
     case ADD_TODO:
